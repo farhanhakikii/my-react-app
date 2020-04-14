@@ -47,8 +47,11 @@ class AuthScreen extends React.Component {
                     b++
                 }
             }
-            if(b == 1){
+            if(username == '' || password == ''){
+                alert("Masukkan Username / Password")
+            }else if(b == 1){
                 alert(`Selamat Datang ${username}`)
+                this.setState({username: '',password: ''})
                 this.refs.unl.value = ''
                 this.refs.pwl.value = ''
             }else{
