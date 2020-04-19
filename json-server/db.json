@@ -1,0 +1,47 @@
+{
+  "user": [],
+  "pengguna": [
+    {
+      "un": "han",
+      "pw": "123",
+      "rl": "123",
+      "fn": "han",
+      "id": 1
+    },
+    {
+      "un": "hanhan",
+      "pw": "123",
+      "rl": "123",
+      "fn": "han",
+      "id": 2
+    },
+    {
+      "un": "hanki",
+      "pw": "123",
+      "rl": "admin",
+      "fn": "Farhan",
+      "id": 3
+    },
+    {
+      "un": "hanhanhan",
+      "pw": "123",
+      "rl": "123",
+      "fn": "han",
+      "id": 4
+    },
+    {
+      "un": "hanhanhan1",
+      "pw": "123",
+      "rl": "123",
+      "fn": "farhan hakiki",
+      "id": 5
+    },
+    {
+      "un": "hanhan2",
+      "pw": "123",
+      "rl": "123",
+      "fn": "hanhan",
+      "id": 6
+    }
+  ]
+}
