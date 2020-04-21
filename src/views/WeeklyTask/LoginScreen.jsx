@@ -1,6 +1,8 @@
 import React from 'react'
 import Axios from 'axios'
 import { API_URL } from '../../constants/API'
+import { connect } from 'react-redux'
+import { userInputHandler } from '../../redux/actions'
 
 class LoginScreen extends React.Component {
     state = {
@@ -27,6 +29,7 @@ class LoginScreen extends React.Component {
         if(username == userlogin[0].un && password == userlogin[0].pw){
             alert("Berhasil Login")
             this.props.history.push(`/profile/${username}`)
+            this.props.userInputHandler(`Welcome, ${username}`)
             this.refs.unl.value = ''
             this.refs.pwl.value = ''
         }else{
@@ -46,5 +49,9 @@ class LoginScreen extends React.Component {
             )
     }
 }
-
-export default LoginScreen
+const mapStateToProps = (state) => {
+    return {
+        todo: state.todo
+    }
+}
+export default connect(mapStateToProps,{userInputHandler})(LoginScreen)
