@@ -1,11 +1,12 @@
     const init_state = {
-        id: 0,
-        username: "admin",
+        id: "",
+        username: "",
         fullName: "",
         role: "",
         testing: "",
         testing2: "",
-        errmsg: ""
+        errmsg: "",
+        isExist: true
     };
     
     export default (state = init_state, action) => {
@@ -13,7 +14,9 @@
             return { ...state, username: action.payload };
         }else if (action.type === "ON_LOGIN_SUCCESS") {
             const {un, fn, rl} = action.payload
-            return { ...state, un, fn, rl };
+            return { ...state, username: un, fullName: fn, role: rl, isExist: false };
+        }else{
+            return{ ...state, isExist: true}
         }
         return { ...state };
     };

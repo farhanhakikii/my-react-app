@@ -1,5 +1,6 @@
 import Axios from "axios"
 import { API_URL } from "../../constants/API"
+import user from "../reducers/user"
 
 export const userInputHandler = (text) => {
     return {
@@ -29,6 +30,7 @@ export const regHandler = (regdata) => {
                     type: "ON_LOGIN_SUCCESS",
                     payload: res.data[0]
                 })
+                this.props.userInputHandler(`${username}`)
             }
         })
         .catch(err => {
@@ -73,5 +75,31 @@ export const loginHandler = (datauser) => {
         //     type: "TESTING2",
         //     payload: "Hello Worldas"
         // })
+    }
+}
+
+export const keepLogin = (dtapengguna) => {
+    return dispatch => {
+        Axios.get(`${API_URL}/pengguna`, {
+            params: {
+                username: dtapengguna.username
+            }
+        })
+        .then((res) => {
+            if(res.data.length > 0){
+                dispatch({
+                    type: "ON_LOGIN_SUCCESS",
+                    payload: res.data[0]
+                })
+            }else {
+                dispatch({
+                    type: "ON_LOGIN_FAILED",
+                    payload: "username/password salah"
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 }
