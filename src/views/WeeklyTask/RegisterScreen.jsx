@@ -22,12 +22,16 @@ class RegisterScreen extends React.Component {
         const datareg = {
             username,password,role,fullName
         }
-        this.props.regHandler(datareg)
-        this.props.userInputHandler(`${username}`)
-        this.refs.fnr.value = ''
-        this.refs.unr.value = ''
-        this.refs.pwr.value = ''
-        this.refs.rlr.value = ''
+            this.props.regHandler(datareg)
+            this.refs.fnr.value = ''
+            this.refs.unr.value = ''
+            this.refs.pwr.value = ''
+            this.refs.rlr.value = ''
+            this.props.userInputHandler(`${username}`)
+            // if(this.props.user.isExist == false){
+            // }else{
+            //     this.props.userInputHandler('User')
+            // }            
         //this.props.history.push(`/profile/${username}`)
     }
     // postDataHandler = () => {
