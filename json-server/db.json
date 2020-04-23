@@ -1,32 +1,11 @@
 {
   "pengguna": [
     {
-      "un": "paanisme",
-      "pw": "12345",
-      "rl": "admin",
-      "fn": "Farhan Hakiki",
-      "id": 1
-    },
-    {
-      "un": "paanisme",
+      "un": "han",
       "pw": "123",
-      "rl": "player",
-      "fn": "Farhan",
-      "id": 2
-    },
-    {
-      "un": "paanisme",
-      "pw": "1234",
-      "rl": "123",
-      "fn": "farhan hakiki",
-      "id": 3
-    },
-    {
-      "un": "paanisme",
-      "pw": "1234",
-      "rl": "123",
-      "fn": "paa",
-      "id": 4
+      "rl": "user",
+      "fn": "farhan",
+      "id": 1
     }
   ]
 }
