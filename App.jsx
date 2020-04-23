@@ -3,9 +3,10 @@ import './App.css';
 import './bootstrap.css'
 import AuthScreen from './views/screen/AuthScreen';
 import LifeCycleScreen from './LifeCycleScreen';
+import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
-import Cookie from 'universal-cookie';
 import HomeScreen from './views/screen/HomeScreen';
+import cookie from 'universal-cookie'
 import CounterScreen from './views/screen/CounterScreen'
 import PageNotFound from './views/screen/PageNotFound';
 import Navbar from './views/components/Navbar';
@@ -15,10 +16,17 @@ import RegisterScreen from './views/WeeklyTask/RegisterScreen';
 import LoginScreen from './views/WeeklyTask/LoginScreen';
 import LogScreen from './views/WeeklyTask/LogScreen';
 import TodoReduxScreen from './views/screen/TodoReduxScreen';
+import { keepLogin } from './redux/actions'
 
-const cookieObject = new Cookie()
-
+const cookieObject = new cookie()
 class App extends React.Component{
+
+  componentDidMount(){
+    let cookieResult = cookieObject.get("authData")
+    if(cookieResult){
+      this.props.keepLogin(cookieResult)  
+    }
+  }
  render() {
    return (
     <BrowserRouter>
@@ -28,7 +36,7 @@ class App extends React.Component{
         <Route exact path="/todo" component={TodoReduxScreen}/>
         <Route exact path="/input" component={InputScreen}/>
         <Route exact path="/" component={RegisterScreen}/>
-        <Route exact path="/login" component={LogScreen}/>
+        <Route exact path="/login" component={LoginScreen}/>
         <Route exact path="/profile/:username" component={ProfileScreen}/>
         <Route path="*" component={PageNotFound}/>{/*path="*" cocok untuk semua,jadi apapun hasilnya bakal nampilin error not found, tapi kalo yg diatasnya udh ketemu dulu, maka ga dieksekusi*/}
       </Switch>
@@ -45,5 +53,14 @@ class App extends React.Component{
 <Route exact path="/input" component={InputScreen}/> */}
 //<Route exact path="/profile/:username" component={ProfileScreen /*:username adalah nama parameter yg akan di ambil oleh profilescreen setelah welcome, ...*/}/>
 
+const mapStatetoProps = (state) => {
+  return{
+    user: state.user
+  }
+}
 
-export default withRouter(App);
+const mapDispatchtoProps = {
+  keepLogin,
+}
+
+export default connect(mapStatetoProps,mapDispatchtoProps)(withRouter(App));
