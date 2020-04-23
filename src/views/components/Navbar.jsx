@@ -1,9 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { todoInputHandler } from '../../redux/actions'
+import { todoInputHandler,userInputHandler } from '../../redux/actions'
+import cookie from 'universal-cookie'
 
+const cookieObject = new cookie()
 class Navbar extends React.Component{
+    deleteCookie = () => {
+        cookieObject.remove('authData')
+        this.props.userInputHandler('')
+    }
     render() {
         return (
             <div className="d-flex justify-content-around align-items-center"
@@ -15,6 +21,9 @@ class Navbar extends React.Component{
                 <Link to="/login">Login</Link>
                 <Link to="/profile">Profile</Link>
                 {this.props.user.username}
+                {
+                    this.props.user.username ? <button className="btn btn-danger" onClick={this.deleteCookie}>Logout</button> : null
+                }
             </div>
         )
     }
@@ -26,4 +35,4 @@ const mapStateToProps = (state) => {
         user: state.user
     }
 }
-export default connect(mapStateToProps,{todoInputHandler})(Navbar);
+export default connect(mapStateToProps,{todoInputHandler,userInputHandler})(Navbar);
